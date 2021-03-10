@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const dbConnection = async() => {
     
     try {
-        await mongoose.connect( 'mongodb+srv://user_node_cafe:GdiiFgqaXPZ3vxT9@clustercoffe.lx1b3.mongodb.net/cafeDB', {
+        await mongoose.connect( process.env.MONGODB_CNN, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
