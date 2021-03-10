@@ -14,14 +14,14 @@ const usuariosGet = async(req = request, res = response) => {
     const query = { estado: true };
     
     /* Verificación de los args */
-    // limite = Number.parseInt(limite, 10);
-    // if( Number.isNaN(limite) ){
-    //     limite = 5;
-    // }
-    // desde = Number.parseInt(desde, 10);
-    // if( Number.isNaN(desde) ){
-    //     desde = 0;
-    // }
+    limite = Number.parseInt(limite, 10);
+    if( Number.isNaN(limite) ){
+        limite = 5;
+    }
+    desde = Number.parseInt(desde, 10);
+    if( Number.isNaN(desde) ){
+        desde = 0;
+    }
 
     // Son 2 promesas pero primero se ejecuta una y hasta que termine se ejecuta la otra
     // const usuarios = await Usuario.find(query)
@@ -32,8 +32,8 @@ const usuariosGet = async(req = request, res = response) => {
     const [ total, usuarios ] = await Promise.all([
         Usuario.countDocuments(query),
         Usuario.find(query)
-            .skip( Number(desde) )
-            .limit( Number(limite) )
+            .skip( desde )
+            .limit( limite )
     ])
 
     res.json({
